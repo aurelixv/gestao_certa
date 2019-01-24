@@ -1,0 +1,6 @@
+<%= form_with model: @account_type do |f| %>
+  <div class="form-group">
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Tipo' %>
+  </div>
+  <%= f.submit class: 'btn btn-primary'%>
+<% end %>

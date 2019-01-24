@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  has_one :employee
+  belongs_to :addressable, polymorphic: true
 end

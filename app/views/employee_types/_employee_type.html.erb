@@ -1,0 +1,25 @@
+<div id="employee-types">
+  <div class="card shadow">
+    <h5 class="card-header">Cargos</h5>
+    <div class="card-body">
+      <% if @data[:employee_types].empty? %>
+        <p>Sem cargos cadastrados.</p>
+      <% else %>
+        <table class="table table-borderless">
+          <tbody>
+          <% @data[:employee_types].each do |type| %>
+            <tr class="border-bottom">
+              <td><%= type.title %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+    <footer class="text-right card-footer">
+      <%= render 'shared/button_trigger_modal', path: new_employee_type_path, header: 'Novo Cargo', size: '' do %>
+        Novo
+      <% end %>
+    </footer>
+  </div>
+</div>

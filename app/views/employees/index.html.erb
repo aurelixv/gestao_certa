@@ -1,0 +1,9 @@
+<div class="card card-body mb-4 shadow">
+  <h3>Colaboradores</h3>
+</div>
+
+<div id="employees" class="card card-body shadow">
+  <%= render 'employee' %>
+</div>
+
+<%= render 'shared/corner_button', path: new_employee_path, header: 'Novo Colaborador', size: 'modal-lg' %>

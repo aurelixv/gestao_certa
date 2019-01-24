@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap-datepicker3.min
  *= require_tree .
  *= require_self
  */
@@ -17,6 +18,10 @@
 
 body {
     font-size: .875rem;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 .feather {
@@ -89,7 +94,7 @@ body {
 
 @media (min-width: 768px) {
     [role="main"] {
-        padding-top: 48px; /* Space for fixed navbar */
+        padding-top: 90px; /* Space for fixed navbar */
     }
 }
 

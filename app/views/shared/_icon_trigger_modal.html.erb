@@ -1,0 +1,5 @@
+<%= link_to path,
+            remote: true,
+            data: { toggle: 'modal', target: '#modal-form', header: header, size: size }, title: title do %>
+  <%= yield %>
+<% end %>

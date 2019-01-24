@@ -1,3 +1,3 @@
 class EmploymentRecordCard < ApplicationRecord
-  has_one :employee
+  belongs_to :employee
 end

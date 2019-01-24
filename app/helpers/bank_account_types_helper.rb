@@ -1,0 +1,2 @@
+module BankAccountTypesHelper
+end

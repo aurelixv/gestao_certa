@@ -1,0 +1,17 @@
+.corner-button {
+  position: fixed;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  bottom: 24px;
+  right: 24px;
+  background-color: lightgreen;
+  border-radius: 50%;
+}
+
+.btn-shadow {
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24)
+}

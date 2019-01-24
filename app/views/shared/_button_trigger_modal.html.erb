@@ -1,0 +1,8 @@
+<% size = size || '' %>
+
+<%= link_to path,
+            remote: true,
+            data: { toggle: 'modal', target: '#modal-form', header: header, size: size || '' },
+            class: 'btn btn-primary btn-shadow' do %>
+  <%= yield %>
+<% end %>
