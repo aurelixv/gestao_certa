@@ -1,0 +1,22 @@
+<script type="text/javascript" charset="utf-8">
+    $(".flash-animate").delay(4000).animate({right:'-310px'}, function(){
+        $(this).remove();
+    });
+    $(".flash-animate").mouseover(function(){
+        $( this ).stop( true, true ).animate();
+        $( this ).mouseout(function(){
+            $(this).delay(4000).animate({right:'-310px'}, function() {
+                $(this).remove();
+            });
+        });
+    });
+</script>
+
+<% flash.each do |name, msg| -%>
+  <% if msg.size > 0 %>
+    <%= content_tag :div, msg, class: "flash-animate alert #{alert_class name} alert-dismissible alert-cm" do %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= msg %>
+    <% end %>
+  <% end  %>
+<% end -%>

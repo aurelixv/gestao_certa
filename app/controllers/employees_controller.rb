@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     respond_to :js
     if @employee.save
-      flash[:notice] = 'Colaborador cadastrado com sucesso.'
+      flash[:success] = 'Colaborador cadastrado com sucesso.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to :js
     if @employee.update(employee_params)
-      flash[:notice] = 'Colaborador atualizado com sucesso.'
+      flash[:success] = 'Colaborador atualizado com sucesso.'
     else
       render :edit
     end

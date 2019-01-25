@@ -1,3 +1,5 @@
+$("#flash-message").html("<%= j render 'shared/flash_message' %>")
+
 $.ajax({
     url: '<%= employees_path %>',
     type: 'GET',

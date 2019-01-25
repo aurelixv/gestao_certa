@@ -8,7 +8,7 @@ class EmployeeTypesController < ApplicationController
     @employee_type = EmployeeType.new(employee_type_params)
     respond_to :js
     if @employee_type.save
-      flash[:notice] = 'Cargo criado com sucesso.'
+      flash[:success] = 'Cargo criado com sucesso.'
     else
       render :new
     end

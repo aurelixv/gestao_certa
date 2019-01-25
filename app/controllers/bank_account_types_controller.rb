@@ -8,7 +8,7 @@ class BankAccountTypesController < ApplicationController
     @account_type = BankAccountType.new(account_type_params)
     respond_to :js
     if @account_type.save
-      flash[:notice] = 'Tipo de Conta criada com sucesso.'
+      flash[:success] = 'Tipo de Conta criada com sucesso.'
     else
       render :new
     end

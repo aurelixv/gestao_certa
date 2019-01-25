@@ -1,108 +1,129 @@
-<%= form_with model: @employee, id: 'employee-form' do |f| %>
-  <nav class="mb-3">
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-home" aria-selected="true">
-        Colaborador
-      </a>
-      <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-profile" aria-selected="false">
-        Endereço
-      </a>
-      <a class="nav-item nav-link" id="nav-account-tab" data-toggle="tab" href="#nav-account" role="tab" aria-controls="nav-contact" aria-selected="false">
-        Informações Bancárias
-      </a>
-      <a class="nav-item nav-link" id="nav-card-tab" data-toggle="tab" href="#nav-card" role="tab" aria-controls="nav-contact" aria-selected="false">
-        Carteira de Trabalho
-      </a>
+<%= form_with model: @employee do |f| %>
+  <%= f.fields_for :person do |person_form| %>
+    <div class="form-group">
+      <%= person_form.label :name %>
+      <%= person_form.text_field :name, class: 'form-control', required: true, placeholder: 'Nome' %>
     </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-      <%= f.fields_for :person do |person_form| %>
-        <div class="form-group">
-          <%= person_form.text_field :name, class: 'form-control', required: true, placeholder: 'Nome' %>
-        </div>
-        <div class="form-group">
-          <%= person_form.text_field :rg, class: 'form-control rg', required: true, placeholder: 'RG' %>
-        </div>
-        <div class="form-group">
-          <%= person_form.text_field :cpf, class: 'form-control cpf', required: true, placeholder: 'CPF' %>
-        </div>
-        <div class="form-group">
-          <%= person_form.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
-        </div>
-        <div class="form-group">
-          <%= person_form.text_field :birth_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Nascimento' %>
-        </div>
-        <div class="form-group">
-          <%= person_form.text_field :phone, class: 'form-control phone', required: true, placeholder: 'Telefone' %>
-        </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= f.text_field :start_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Início' %>
+    <div class="form-row">
+      <div class="form-group col-6">
+        <%= person_form.label :rg %>
+        <%= person_form.text_field :rg, class: 'form-control rg', required: true, placeholder: 'RG' %>
       </div>
-      <div class="form-group">
-        <%= f.collection_select :employee_type_id, EmployeeType.all, :id, :title, { prompt: 'Cargo' }, class: 'custom-select', required: true %>
+      <div class="form-group col-6">
+        <%= person_form.label :cpf %>
+        <%= person_form.text_field :cpf, class: 'form-control cpf', required: true, placeholder: 'CPF' %>
       </div>
     </div>
-
-    <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
-      <%= f.fields_for :address do |address_form| %>
-        <div class="form-group">
-          <%= address_form.text_field :street, class: 'form-control', required: true, placeholder: 'Rua' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :number, class: 'form-control address-number', required: true, placeholder: 'Número' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :complement, class: 'form-control', placeholder: 'Complemento' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :zip_code, class: 'form-control cep', required: true, placeholder: 'CEP' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :district, class: 'form-control', required: true, placeholder: 'Bairro' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :city, class: 'form-control', required: true, placeholder: 'Cidade' %>
-        </div>
-        <div class="form-group">
-          <%= address_form.text_field :state, class: 'form-control uf', required: true, placeholder: 'UF' %>
-        </div>
-      <% end %>
+    <div class="form-row">
+      <div class="form-group col-5">
+        <%= person_form.label :email %>
+        <%= person_form.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
+      </div>
+      <div class="form-group col-3">
+        <%= person_form.label :birth_date %>
+        <%= person_form.text_field :birth_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Nascimento' %>
+      </div>
+      <div class="form-group col-4">
+        <%= person_form.label :phone %>
+        <%= person_form.text_field :phone, class: 'form-control phone', required: true, placeholder: 'Telefone' %>
+      </div>
     </div>
-    <div class="tab-pane fade" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
-      <%= f.fields_for :bank_account do |account_form| %>
-        <div class="form-group">
-          <%= account_form.text_field :name, class: 'form-control', required: true, placeholder: 'Banco' %>
-        </div>
-        <div class="form-group">
-          <%= account_form.text_field :branch, class: 'form-control', required: true, placeholder: 'Agência' %>
-        </div>
-        <div class="form-group">
-          <%= account_form.text_field :account_number, class: 'form-control', required: true, placeholder: 'Conta' %>
-        </div>
-        <div class="form-group">
-          <%= account_form.collection_select :bank_account_type_id, BankAccountType.all, :id, :title, { prompt: 'Tipo de Conta' }, class: 'custom-select', required: true %>
-        </div>
-      <% end %>
+  <% end %>
+  <div class="form-row">
+    <div class="form-group col-4">
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Início' %>
     </div>
-    <div class="tab-pane fade" id="nav-card" role="tabpanel" aria-labelledby="nav-contact-tab">
-      <%= f.fields_for :employment_record_card do |card_form| %>
-        <div class="form-group">
-          <%= card_form.text_field :pis_pasep, class: 'form-control pis', required: true, placeholder: 'PIS/PASEP' %>
-        </div>
-        <div class="form-group">
-          <%= card_form.text_field :number, class: 'form-control pis-number', required: true, placeholder: 'Número' %>
-        </div>
-        <div class="form-group">
-          <%= card_form.text_field :series, class: 'form-control pis-series', required: true, placeholder: 'Série' %>
-        </div>
-        <div class="form-group">
-          <%= card_form.text_field :state, class: 'form-control uf', required: true, placeholder: 'UF' %>
-        </div>
-      <% end %>
+    <div class="form-group col-8">
+      <%= f.label :employee_type_id %>
+      <%= f.collection_select :employee_type_id, EmployeeType.all, :id, :title, { prompt: 'Cargo' }, class: 'custom-select', required: true %>
     </div>
   </div>
+
+  <%= f.fields_for :address do |address_form| %>
+    <hr>
+    <h5>Endereço</h5>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-5">
+        <%= address_form.label :street %>
+        <%= address_form.text_field :street, class: 'form-control', required: true, placeholder: 'Rua' %>
+      </div>
+      <div class="form-group col-2">
+        <%= address_form.label :number %>
+        <%= address_form.text_field :number, class: 'form-control address-number', required: true, placeholder: 'Número' %>
+      </div>
+      <div class="form-group col-5">
+        <%= address_form.label :complement %>
+        <%= address_form.text_field :complement, class: 'form-control', placeholder: 'Complemento' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-4">
+        <%= address_form.label :zip_code %>
+        <%= address_form.text_field :zip_code, class: 'form-control cep', required: true, placeholder: 'CEP' %>
+      </div>
+      <div class="form-group col-8">
+        <%= address_form.label :district %>
+        <%= address_form.text_field :district, class: 'form-control', required: true, placeholder: 'Bairro' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-10">
+        <%= address_form.label :city %>
+        <%= address_form.text_field :city, class: 'form-control', required: true, placeholder: 'Cidade' %>
+      </div>
+      <div class="form-group col-2">
+        <%= address_form.label :state %>
+        <%= address_form.text_field :state, class: 'form-control uf', required: true, placeholder: 'UF' %>
+      </div>
+    </div>
+  <% end %>
+  <%= f.fields_for :bank_account do |account_form| %>
+    <hr>
+    <h5>Dados Bacários</h5>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-4">
+        <%= account_form.label :name %>
+        <%= account_form.text_field :name, class: 'form-control', required: true, placeholder: 'Banco' %>
+      </div>
+      <div class="form-group col-2">
+        <%= account_form.label :branch %>
+        <%= account_form.text_field :branch, class: 'form-control', required: true, placeholder: 'Agência' %>
+      </div>
+      <div class="form-group col-3">
+        <%= account_form.label :account_number %>
+        <%= account_form.text_field :account_number, class: 'form-control', required: true, placeholder: 'Conta' %>
+      </div>
+      <div class="form-group col-3">
+        <%= account_form.label :bank_account_type_id %>
+        <%= account_form.collection_select :bank_account_type_id, BankAccountType.all, :id, :title, { prompt: 'Tipo de Conta' }, class: 'custom-select', required: true %>
+      </div>
+    </div>
+  <% end %>
+  <%= f.fields_for :employment_record_card do |card_form| %>
+    <hr>
+    <h5>Carteira de Trabalho</h5>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-5">
+        <%= card_form.label :pis_pasep %>
+        <%= card_form.text_field :pis_pasep, class: 'form-control pis', required: true, placeholder: 'PIS/PASEP' %>
+      </div>
+      <div class="form-group col-3">
+        <%= card_form.label :number %>
+        <%= card_form.text_field :number, class: 'form-control pis-number', required: true, placeholder: 'Número' %>
+      </div>
+      <div class="form-group col-2">
+        <%= card_form.label :series %>
+        <%= card_form.text_field :series, class: 'form-control pis-series', required: true, placeholder: 'Série' %>
+      </div>
+      <div class="form-group col-2">
+        <%= card_form.label :state %>
+        <%= card_form.text_field :state, class: 'form-control uf', required: true, placeholder: 'UF' %>
+      </div>
+    </div>
+  <% end %>
   <%= render 'shared/button_form_submit', form: f %>
 <% end %>

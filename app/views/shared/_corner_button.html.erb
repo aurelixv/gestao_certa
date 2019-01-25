@@ -1,6 +1,7 @@
 <%= link_to path,
             remote: true,
             data: { toggle: 'modal', target: '#modal-form', header: header, size: size },
-            class: 'corner-button text-white btn-shadow' do %>
+            class: 'corner-button text-white btn-shadow',
+            title: title do %>
   <i class="fas fa-plus fa-2x"></i>
 <% end %>
