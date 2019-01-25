@@ -1,27 +1,27 @@
 <%= form_with model: @employee do |f| %>
   <%= f.fields_for :person do |person_form| %>
-    <div class="form-group">
-      <%= person_form.label :name %>
-      <%= person_form.text_field :name, class: 'form-control', required: true, placeholder: 'Nome' %>
-    </div>
     <div class="form-row">
       <div class="form-group col-6">
+        <%= person_form.label :name %>
+        <%= person_form.text_field :name, class: 'form-control', required: true, placeholder: 'Nome' %>
+      </div>
+      <div class="form-group col-3">
         <%= person_form.label :rg %>
         <%= person_form.text_field :rg, class: 'form-control rg', required: true, placeholder: 'RG' %>
       </div>
-      <div class="form-group col-6">
+      <div class="form-group col-3">
         <%= person_form.label :cpf %>
         <%= person_form.text_field :cpf, class: 'form-control cpf', required: true, placeholder: 'CPF' %>
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-5">
-        <%= person_form.label :email %>
-        <%= person_form.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
-      </div>
       <div class="form-group col-3">
         <%= person_form.label :birth_date %>
         <%= person_form.text_field :birth_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Nascimento' %>
+      </div>
+      <div class="form-group col-5">
+        <%= person_form.label :email %>
+        <%= person_form.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
       </div>
       <div class="form-group col-4">
         <%= person_form.label :phone %>
@@ -30,13 +30,13 @@
     </div>
   <% end %>
   <div class="form-row">
-    <div class="form-group col-4">
-      <%= f.label :start_date %>
-      <%= f.text_field :start_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Início' %>
-    </div>
-    <div class="form-group col-8">
+    <div class="form-group col-9">
       <%= f.label :employee_type_id %>
       <%= f.collection_select :employee_type_id, EmployeeType.all, :id, :title, { prompt: 'Cargo' }, class: 'custom-select', required: true %>
+    </div>
+    <div class="form-group col-3">
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date, class: 'form-control datepicker', required: true, placeholder: 'Data de Início' %>
     </div>
   </div>
 
