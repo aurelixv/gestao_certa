@@ -11,6 +11,8 @@ class Employee < ApplicationRecord
   accepts_nested_attributes_for :bank_account
   accepts_nested_attributes_for :person
 
+  default_scope { order(:created_at) }
+
   def name
     person.name
   end
